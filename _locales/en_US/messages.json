@@ -4,5 +4,11 @@
 	},
 	"extensionDescription": {
 		"message": "This extension allows you to remove some unnecessary panels (trash) in Facebook. Open Source: https://github.com/Smurfik997/Facebook-Extension. Download link: https://goo.gl/QtE9Gy."
+	},
+	"button_a": {
+		"message": "Enabled"
+	},
+	"button_d": {
+		"message": "Disabled"
 	}
 }

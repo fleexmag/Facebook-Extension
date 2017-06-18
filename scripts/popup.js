@@ -28,11 +28,11 @@ function click() {
     if (getCookie('enabled') == '1') {
         setCookie('enabled', '0', exp);
         icon('disabled');
-        chrome.tabs.reload(parseInt(getCookie('tabId')), {bypassCache: false});
+        chrome.tabs.reload();
     } else if (getCookie('enabled') == '0') {
         setCookie('enabled', '1', exp);
         icon('enabled');
-        chrome.tabs.reload(parseInt(getCookie('tabId')), {bypassCache: false});
+        chrome.tabs.reload();
     }
     location.reload();
 }
@@ -43,15 +43,15 @@ var exp = 365;
 
 if (getCookie('enabled') == undefined) {
     setCookie('enabled', '1', exp);
-    doc('b1').innerHTML = 'Enabled';
+    doc('b1').innerHTML = chrome.i18n.getMessage('button_a');
     doc('b1').classList = 'b1';
     icon('enabled');
 } else if (getCookie('enabled') == '1') {
-    doc('b1').innerHTML = 'Enabled';
+    doc('b1').innerHTML = chrome.i18n.getMessage('button_a');
     doc('b1').classList = 'b1';
     icon('enabled');
 } else if (getCookie('enabled') == '0') {
-    doc('b1').innerHTML = 'Disabled';
+    doc('b1').innerHTML = chrome.i18n.getMessage('button_d');
     doc('b1').classList = 'b1 d';
     icon('disabled');
 }
