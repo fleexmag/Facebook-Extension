@@ -9,14 +9,15 @@
 	    "name": "Artem Trygub"
     },
 	"background": {
-		"scripts": ["scripts/background_v2.0.1.js"]
+		"scripts": ["scripts/cookie.js", "scripts/background_v2.0.1.js"]
 	},
     "permissions": [
 		"tabs", "*://*.facebook.com/*"
     ],
 	"browser_action": {
 		"default_icon": "images/icon128.png",
-		"default_title": "Facebook"
+		"default_title": "Facebook",
+		"default_popup": "popup.html"
 	},
 	"icons": {
 		"16": "images/icon16.png",
