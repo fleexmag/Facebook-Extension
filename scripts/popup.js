@@ -1,8 +1,10 @@
+//native function of getting block
 function doc(id) {
     var res = document.getElementById(id);
     return res;
 }
 
+//function for changing icon
 function icon(status) {
     if (status == 'enabled')
     {
@@ -24,6 +26,7 @@ function icon(status) {
     }
 }
 
+//function for button
 function click() {
     if (getCookie('enabled') == '1') {
         setCookie('enabled', '0', exp);
@@ -39,8 +42,10 @@ function click() {
 
 document.getElementById('b1').onclick = function() {click();};
 
+//time in days for cookie
 var exp = 365;
 
+//changing cookie while page is loading
 if (getCookie('enabled') == undefined) {
     setCookie('enabled', '1', exp);
     doc('b1').innerHTML = chrome.i18n.getMessage('button_a');

@@ -9,7 +9,7 @@
 	    "name": "Artem Trygub"
     },
 	"background": {
-		"scripts": ["scripts/cookie.js", "scripts/background_v2.0.1.js"]
+		"scripts": ["scripts/cookie.js", "scripts/background.js"]
 	},
     "permissions": [
 		"tabs", "*://*.facebook.com/*"

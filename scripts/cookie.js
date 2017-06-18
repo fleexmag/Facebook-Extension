@@ -1,3 +1,4 @@
+//native function for getting cookie
 function getCookie(cname) {
     var matches = document.cookie.match(new RegExp(
         '(?:^|; )' + cname.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'
@@ -5,6 +6,7 @@ function getCookie(cname) {
     return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
+//native function for setting cookie
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
