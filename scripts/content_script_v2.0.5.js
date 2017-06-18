@@ -2,8 +2,8 @@
 var main_page = document.getElementsByClassName('_2s25')[1].href; //news href
     main_page = main_page.replace('?ref=tn_tnmn','');
     text = '323a342a60c5451010154c4b4ab545aca4a4d0732ce254be32d21b3acbe4c1';
-    image = 'https://lh5.googleusercontent.com/h9KvfKXthY3XgsoTZcMBl8t9twK0aazkp-_ucVZsEuc0VFgb-FRrn_JEk-VAK9P0pO5FrEYtEXa5mg=w1326-h629';
-    img_like = 'https://github.com/Smurfik997/Facebook-Extension/blob/master/images/img_like.png';
+    image = 'https://raw.githubusercontent.com/Smurfik997/Facebook-Extension/master/images/image.png';
+    img_like = 'https://raw.githubusercontent.com/Smurfik997/Facebook-Extension/master/images/img_like.png';
 
 //native function of getting block
 function doc(class_name, num) {
