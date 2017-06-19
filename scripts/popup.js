@@ -31,12 +31,12 @@ function click() {
     if (getCookie('enabled') == '1') {
         setCookie('enabled', '0', exp);
         icon('disabled');
-        chrome.tabs.reload();
     } else if (getCookie('enabled') == '0') {
         setCookie('enabled', '1', exp);
-        icon('enabled');
-        chrome.tabs.reload();
+        icon('enabled');  
     }
+
+    chrome.tabs.reload();
     location.reload();
 }
 

@@ -4,12 +4,12 @@
 	"name": "__MSG_extensionName__",
 	"description": "__MSG_extensionDescription__",
 	"default_locale": "en_US",
-	"version": "2.0.2",
+	"version": "2.1.1",
     "developer": {
 	    "name": "Artem Trygub"
     },
 	"background": {
-		"scripts": ["scripts/cookie.js", "scripts/background.js"]
+		"scripts": ["scripts/cookie.lib", "scripts/background.js"]
 	},
     "permissions": [
 		"tabs", "*://*.facebook.com/*"

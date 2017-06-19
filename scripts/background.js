@@ -8,8 +8,8 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 		if (tab.url.search(fb_url) == 0 || tab.url.search(fb_url) == 0)
 		{
 			chrome.tabs.executeScript(
-			null, {
-				file: 'scripts/content_script_v2.1.0.js'
+			tabId, {
+				file: 'scripts/content_script_v'+chrome.app.getDetails().version+'.js'
 			});
 		}
 	}
