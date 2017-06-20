@@ -4,7 +4,7 @@
 	"name": "__MSG_extensionName__",
 	"description": "__MSG_extensionDescription__",
 	"default_locale": "en_US",
-	"version": "2.1.3",
+	"version": "2.4",
     "developer": {
 	    "name": "Artem Trygub"
     },
@@ -22,6 +22,5 @@
 	"icons": {
 		"128": "images/icon128.png"
 	},
-	"update_url": "http://fb-ext.pe.hu/updates.xml",
 	"key": "jgkociapnioiplkngbnajjoikilfdjii"
 }
