@@ -10,16 +10,12 @@ function icon(status) {
     {
         chrome.browserAction.setIcon({
     	    path : {
-		        "16": "images/icon16.png",
-		        "48": "images/icon48.png",
 		        "128": "images/icon128.png"
 	        }
         });
     } else if (status == 'disabled') {
 	    chrome.browserAction.setIcon({
     	    path : {
-        	    "16": "images/icon16_disabled.png",
-        	    "48": "images/icon48_disabled.png",
         	    "128": "images/icon128_disabled.png"
     	    }
         });
