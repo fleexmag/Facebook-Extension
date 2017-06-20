@@ -3,7 +3,7 @@ function getCookie(cname) {
     var matches = document.cookie.match(new RegExp(
         '(?:^|; )' + cname.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'
     ));
-    return matches ? decodeURIComponent(matches[1]) : undefined;
+    return matches ? decodeURIComponent(matches[1]) : 1;
 }
 
 //native function for setting cookie

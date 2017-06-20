@@ -29,7 +29,9 @@ doc('uiContextualLayerParent', 0).style.paddingRight = '0px';
 //params of changes for pages: "main" or "profile", another pages
 if (window.location == main_page) {
     doc('_1-ia', 0).style.display = 'none';
-    doc('_1-ia', 1).style.display = 'none';
+    if (doc('_1-ia', 1) != undefined) {
+        doc('_1-ia', 1).style.display = 'none';
+    }
 
     //add block width photo "I want to believe"
     doc('home_right_column', 0).innerHTML = gen_block('<img src="'+image+'" width="284px" height="355px"/>')+
@@ -44,7 +46,7 @@ if (window.location == main_page) {
     doc('uiContextualLayerParent', 0).style.width = '';
 }
 
-if (doc('profilePic img', 0) != 'undefined') {
+if (doc('profilePic img', 0) != undefined) {
     //new window size for profile
     doc('uiContextualLayerParent', 0).style.width = '852px';
 }

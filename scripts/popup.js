@@ -46,12 +46,7 @@ document.getElementById('b1').onclick = function() {click();};
 var exp = 365;
 
 //changing cookie while page is loading
-if (getCookie('enabled') == undefined) {
-    setCookie('enabled', '1', exp);
-    doc('b1').innerHTML = chrome.i18n.getMessage('button_a');
-    doc('b1').classList = 'b1';
-    icon('enabled');
-} else if (getCookie('enabled') == '1') {
+if (getCookie('enabled') == '1') {
     doc('b1').innerHTML = chrome.i18n.getMessage('button_a');
     doc('b1').classList = 'b1';
     icon('enabled');
