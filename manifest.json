@@ -4,7 +4,7 @@
 	"name": "__MSG_extensionName__",
 	"description": "__MSG_extensionDescription__",
 	"default_locale": "en_US",
-	"version": "2.42",
+	"version": "2.43",
     "developer": {
 	    "name": "Artem Trygub"
     },
@@ -12,7 +12,7 @@
 		"scripts": ["scripts/cookie.lib", "scripts/background.js"]
 	},
     "permissions": [
-		"tabs", "*://*.facebook.com/*", "*://*.githubusercontent.com/*"
+		"tabs", "*://*.facebook.com/*", "*://*.githubusercontent.com/*", "webNavigation"
     ],
 	"browser_action": {
 		"default_icon": "images/icon128.png",

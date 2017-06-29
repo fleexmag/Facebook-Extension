@@ -44,6 +44,7 @@ doc('uiContextualLayerParent', 0).style.paddingRight = '0px';
 
 //params of changes for pages: "main" or "profile", another pages
 if (window.location == main_page) {
+    //setTimeout(10);
     if (doc('_1-ia', 0) != undefined) {
         doc('_1-ia', 0).style.display = 'none';
     }
@@ -53,31 +54,37 @@ if (window.location == main_page) {
     if (doc('_1-ia', 2) != undefined) {
         doc('_1-ia', 2).style.display = 'none';
     }
-
-    console.log(getCookie('addPhoto'));
+    
     if (getCookie('addPhoto') == '1')
     {
         //add block with photo "I want to believe"
-        doc('home_right_column', 0).innerHTML = gen_block('<img src="'+image+'" width="284px" height="355px"'+
-        'title="'+chrome.i18n.getMessage('hide')+'"/>', '')+
-        doc('home_right_column', 0).innerHTML;
-        doc('_4-u2 _1-ib _2tyk _20os _4-u8', 0).onclick = function() {
-            addPhoto('0');
-        };
+        if (doc('home_right_column', 0) != undefined)
+        {
+            doc('home_right_column', 0).innerHTML = gen_block('<img src="'+image+'" width="284px" height="355px"'+
+            'title="'+chrome.i18n.getMessage('hide')+'"/>', 'cursor: pointer;')+
+            doc('home_right_column', 0).innerHTML;
+            doc('_4-u2 _1-ib _2tyk _20os _4-u8', 0).onclick = function() {
+                addPhoto('0');
+            };
+        }
     } else {
-        doc('home_right_column', 0).innerHTML = gen_block(chrome.i18n.getMessage('show'), 
-        'height: 20px; width: 284px; background-color: #32cd7e; font: 22px sans-serif; color: white; text-align: center;'+
-        'line-height: 20px;')+
-        doc('home_right_column', 0).innerHTML;
-        doc('_4-u2 _1-ib _2tyk _20os _4-u8', 0).onclick = function() {
-            addPhoto('1');
-        };
+        //hide block with photo "I want to believe"
+        if (doc('home_right_column', 0) != undefined)
+        {
+            doc('home_right_column', 0).innerHTML = gen_block(chrome.i18n.getMessage('show'), 
+            'height: 20px; width: 284px; background-color: #32cd7e; font: 22px sans-serif; color: white; text-align: center;'+
+            'line-height: 20px; cursor: pointer;')+
+            doc('home_right_column', 0).innerHTML;
+            doc('_4-u2 _1-ib _2tyk _20os _4-u8', 0).onclick = function() {
+                addPhoto('1');
+            };
+        }
     }
 } else if (window.location != main_page && doc('profilePic img', 0) == undefined) {
     doc('uiContextualLayerParent', 0).style.width = '';
 } else if (doc('profilePic img', 0) != undefined) {
     //new window size for profile
-    doc('uiContextualLayerParent', 0).style.width = '852px';
+    doc('uiContextualLayerParent', 0).style.width = '851px';
 }
 
 //function for adding block with photo "I want to believe"
