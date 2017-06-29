@@ -1,6 +1,6 @@
 {
 	"extensionName": {
-		"message": "Facebook"
+		"message": "Extension for Facebook"
 	},
 	"extensionDescription": {
 		"message": "This extension allows you to remove some unnecessary panels (trash) in Facebook. Open Source: https://github.com/Smurfik997/Facebook-Extension."
@@ -10,5 +10,11 @@
 	},
 	"button_d": {
 		"message": "Disabled"
+	},
+	"hide": {
+		"message": "Hide"
+	},
+	"show": {
+		"message": "Show"
 	}
 }

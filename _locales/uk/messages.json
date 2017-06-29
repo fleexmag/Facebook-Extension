@@ -1,6 +1,6 @@
 {
 	"extensionName": {
-		"message": "Facebook"
+		"message": "Розширення для Facebook"
 	},
 	"extensionDescription": {
 		"message": "Це розширення допоможе вам прибрати зайві панелі (сміття) в Facebook. Вихідний код: https://github.com/Smurfik997/Facebook-Extension."
@@ -10,5 +10,11 @@
 	},
 	"button_d": {
 		"message": "Вимкнене"
+	},
+	"hide": {
+		"message": "Приховати"
+	},
+	"show": {
+		"message": "Показати"
 	}
 }

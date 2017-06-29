@@ -1,6 +1,6 @@
 {
 	"extensionName": {
-		"message": "Facebook"
+		"message": "Расширение для Facebook"
 	},
 	"extensionDescription": {
 		"message": "Данное расширение позволит вам убрать лишние панели (мусор) в Facebook'е. Исходный код: https://github.com/Smurfik997/Facebook-Extension."
@@ -10,5 +10,11 @@
 	},
 	"button_d": {
 		"message": "Выключено"
+	},
+	"hide": {
+		"message": "Скрыть"
+	},
+	"show": {
+		"message": "Показать"
 	}
 }
