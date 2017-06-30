@@ -1,8 +1,7 @@
 //vars 
 var main_page = document.getElementsByClassName('_2s25')[1].href; //news href
     main_page = main_page.replace('?ref=tn_tnmn','');
-    text = '323a342a60c5451010154c4b4ab545aca4a4d0732ce254be32d21b3acbe4c1';
-    image = 'https://raw.githubusercontent.com/Smurfik997/Facebook-Extension/master/images/image.png';
+    image = chrome.extension.getURL('images/image.png');
 
 //native function for getting cookie
 function getCookie(cname) {

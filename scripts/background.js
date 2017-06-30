@@ -1,5 +1,4 @@
 chrome.webNavigation.onCompleted.addListener(function(e) {
-	//add event listener for page update
 	chrome.tabs.getSelected(null, function(tab) {
 		//if extension is enabled and we are on facebook page, script will work
 		if (getCookie('enabled') == '1') {
