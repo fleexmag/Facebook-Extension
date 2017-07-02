@@ -8,7 +8,7 @@ chrome.webNavigation.onCompleted.addListener(function(e) {
 			{
 				chrome.tabs.executeScript(
 				tab.id, {
-					file: 'scripts/content_script_v'+chrome.app.getDetails().version+'.js'
+					file: 'js/content_script_v'+chrome.app.getDetails().version+'.js'
 				});
 			}
 		}
