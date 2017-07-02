@@ -24,10 +24,10 @@ function icon(status) {
 
 //function for button
 function click() {
-    if (getCookie('enabled') == '1') {
+    if (getCookie('enabled') != '0') {
         setCookie('enabled', '0', exp);
         icon('disabled');
-    } else if (getCookie('enabled') == '0') {
+    } else {
         setCookie('enabled', '1', exp);
         icon('enabled');  
     }
@@ -42,11 +42,11 @@ document.getElementById('b1').onclick = function() {click();};
 var exp = 365;
 
 //changing cookie while page is loading
-if (getCookie('enabled') == '1') {
+if (getCookie('enabled') != '0') {
     doc('b1').innerHTML = chrome.i18n.getMessage('button_a');
     doc('b1').classList = 'b1';
     icon('enabled');
-} else if (getCookie('enabled') == '0') {
+} else {
     doc('b1').innerHTML = chrome.i18n.getMessage('button_d');
     doc('b1').classList = 'b1 d';
     icon('disabled');
