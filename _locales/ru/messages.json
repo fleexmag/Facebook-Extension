@@ -3,7 +3,7 @@
 		"message": "Расширение для Facebook"
 	},
 	"extensionDescription": {
-		"message": "Данное расширение позволит вам убрать лишние панели (мусор) в Facebook'е. Исходный код: https://github.com/Smurfik997/Facebook-Extension."
+		"message": "Данное расширение позволит вам убрать лишние панели (мусор) в Facebook'е."
 	},
 	"button_a": {
 		"message": "Включено"
