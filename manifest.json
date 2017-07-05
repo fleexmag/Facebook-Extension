@@ -4,7 +4,7 @@
 	"name": "__MSG_extensionName__",
 	"description": "__MSG_extensionDescription__",
 	"default_locale": "en_US",
-	"version": "2.47",
+	"version": "2.48",
     "developer": {
 	    "name": "Artem Trygub"
     },
