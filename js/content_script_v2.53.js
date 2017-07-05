@@ -43,23 +43,25 @@ function addPhotoTest(value, num) {
         if (storage.addPhoto == 1)
         {
             //add block with photo "I want to believe"
-            if (doc(value, num) != undefined)
-            {
+            try {
                 doc(value, num).innerHTML = gen_block('<img src="'+image+'" width="284px" height="355px" title="'+chrome.i18n.getMessage('hide')+'"/>', 'cursor: pointer;');
                 doc('pagelet_i_want_to_believe_rhc').onclick = function() {
                     addPhoto('0');
                 };
                 res = 'success';
+            } catch (e) {
+                console.log('error: ' + e.name);
             }
         } else {
             //hide block with photo "I want to believe"
-            if (doc(value, num) != undefined)
-            {
+            try {
                 doc(value, num).innerHTML = gen_block(chrome.i18n.getMessage('show'), 'height: 20px; width: 284px; background-color: #32cd7e; font: 22px sans-serif; color: white; text-align: center; line-height: 20px; cursor: pointer;');
                 doc('pagelet_i_want_to_believe_rhc').onclick = function() {
                     addPhoto('1');
                 };
                 res = 'success';
+            } catch (e) {
+                console.log('error: ' + e.name);
             }
         }
 
@@ -89,7 +91,10 @@ storageGet('page_url', function(storage) {
             doc('globalContainer').style.width = '851px';
         } else if (doc('globalContainer') != undefined) {
             doc('globalContainer').style.width = '';
-            addPhotoTest('pagelet_ego_pane');
+            if (doc('pagelet_ego_pane') != undefined) {
+                doc('pagelet_ego_pane').id = 'pagelet_ego_pane_with_photo';
+            }
+            addPhotoTest('pagelet_ego_pane_with_photo');
         }
 
         /*if (doc('up_button_block') == undefined)
