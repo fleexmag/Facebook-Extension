@@ -1,0 +1,11 @@
+//native function for getting storage data
+function storageGet(cname, callback) {
+    chrome.storage.local.get(cname, callback);
+}
+
+//native function for setting storage data
+function storageSet(cname, cvalue) {
+    obj = {};
+    obj[cname] = cvalue; 
+    chrome.storage.local.set(obj);
+}

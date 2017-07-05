@@ -24,13 +24,15 @@ function icon(status) {
 
 //function for button
 function click() {
-    if (getCookie('enabled') != '0') {
-        setCookie('enabled', '0', exp);
-        icon('disabled');
-    } else {
-        setCookie('enabled', '1', exp);
-        icon('enabled');  
-    }
+    storageGet('enabled', function(storage) {
+        if (storage.enabled != '0') {
+            storageSet('enabled', '0');
+            icon('disabled');
+        } else {
+            storageSet('enabled', '1');
+            icon('enabled');  
+        }
+    });
 
     chrome.tabs.reload();
     location.reload();
@@ -38,16 +40,15 @@ function click() {
 
 document.getElementById('b1').onclick = function() {click();};
 
-//time in days for cookie
-var exp = 365;
-
-//changing cookie while page is loading
-if (getCookie('enabled') != '0') {
-    doc('b1').innerHTML = chrome.i18n.getMessage('button_a');
-    doc('b1').classList = 'b1';
-    icon('enabled');
-} else {
-    doc('b1').innerHTML = chrome.i18n.getMessage('button_d');
-    doc('b1').classList = 'b1 d';
-    icon('disabled');
-}
+//changing storage data while page is loading
+storageGet('enabled', function(storage) {
+    if (storage.enabled != '0') {
+        doc('b1').innerHTML = chrome.i18n.getMessage('button_a');
+        doc('b1').classList = 'b1';
+        icon('enabled');
+    } else {
+        doc('b1').innerHTML = chrome.i18n.getMessage('button_d');
+        doc('b1').classList = 'b1 d';
+        icon('disabled');
+    }
+});
