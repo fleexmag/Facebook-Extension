@@ -1,5 +1,6 @@
 //vars 
 var image = chrome.extension.getURL('images/image.png');
+    up_button_src = chrome.extension.getURL('images/up.png');
 
 //native function for getting storage data
 function storageGet(cname, callback) {
@@ -35,7 +36,7 @@ function addPhoto(value) {
     location.reload();
 }
 
-//function
+//function for adding photo block
 function addPhotoTest(value, num) {
     var res = null;
 
@@ -71,6 +72,45 @@ function addPhotoTest(value, num) {
     });
 }
 
+//function for animate
+function animate(func, duration) {
+    var start = performance.now();
+
+    requestAnimationFrame(function animate(time) {
+        var timePassed = time - start;
+
+        if (timePassed >= duration) {
+            timePassed = duration;
+        }
+
+        func(timePassed);
+
+        if (timePassed < duration) {
+            requestAnimationFrame(animate);
+        }
+    });
+}
+
+//onscroll page function
+function onscroll() {
+    var scroll_value = window.pageYOffset;
+    
+    if (scroll_value >= 1000 && doc('up_button_block') != undefined) {
+        doc('up_button_block').style.display = 'block';
+        if (doc('up_button_block').style.opacity == 0)
+        {
+            var time = 1000;
+                plus = 1/time;
+            animate(function(timePassed) {
+                doc('up_button_block').style.opacity = plus*timePassed;
+            }, time);
+        }
+    } else if (doc('up_button_block') != undefined) {
+        doc('up_button_block').style.display = 'none';
+        doc('up_button_block').style.opacity = '0';
+    }
+}
+
 storageGet('page_url', function(storage) {
     if (storage.page_url != location.href && location.href.split('?')[0].split('www.facebook.com')[1] != '/photo.php') {
         storageSet('page_url', location.href);
@@ -97,9 +137,25 @@ storageGet('page_url', function(storage) {
             addPhotoTest('pagelet_ego_pane_with_photo');
         }
 
-        /*if (doc('up_button_block') == undefined)
+        //-------------------------- up button beta --------------------------
+        if (doc('up_button_block') == undefined)
         {
-            //doc('blueBarDOMInspector').innerHTML += '<div id="up_button_block" style="position: fixed; width: 0px; height: 0px; bottom: 0px; left: 0px;"></div>';
-        }*/
+            doc('pagelet_sidebar').innerHTML += '<div id="up_button_block" style="position: fixed; width: 31px; height: 31px; bottom: 25px; left: 25px; background-color: #2aad6b; border-radius: 100%; display: none; opacity: 0; cursor: pointer;"><img src="'+up_button_src+'" width="31px" height="31px"/></div>';
+            doc('up_button_block').onclick = function() {
+                var time = 500;
+                    minus = window.pageYOffset/time;
+                    y = window.pageYOffset;
+
+                animate(function(timePassed) {
+                    console.log(timePassed);
+                    window.scroll(window.pageXOffset, y - minus*timePassed);
+                }, time);
+            }
+        }
+
+        window.onscroll = function() {
+            onscroll();
+        };
+        //------------------------------- end --------------------------------
     }
 });
