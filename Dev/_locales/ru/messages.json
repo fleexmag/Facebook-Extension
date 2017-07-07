@@ -1,0 +1,20 @@
+{
+	"extensionName": {
+		"message": "Расширение для Facebook"
+	},
+	"extensionDescription": {
+		"message": "Данное расширение позволит вам убрать лишние панели (мусор) в Facebook'е."
+	},
+	"button_a": {
+		"message": "Включено"
+	},
+	"button_d": {
+		"message": "Выключено"
+	},
+	"hide": {
+		"message": "Скрыть"
+	},
+	"show": {
+		"message": "Показать"
+	}
+}

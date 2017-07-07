@@ -1,0 +1,20 @@
+{
+	"extensionName": {
+		"message": "Extension for Facebook"
+	},
+	"extensionDescription": {
+		"message": "This extension allows you to remove some unnecessary panels (trash) in Facebook."
+	},
+	"button_a": {
+		"message": "Enabled"
+	},
+	"button_d": {
+		"message": "Disabled"
+	},
+	"hide": {
+		"message": "Hide"
+	},
+	"show": {
+		"message": "Show"
+	}
+}
