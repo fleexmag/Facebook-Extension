@@ -112,7 +112,7 @@ function onscroll_func() {
 }
 
 storageGet('page_url', function(storage) {
-    if (storage.page_url != location.href && location.href.split('?')[0].split('www.facebook.com')[1] != '/photo.php') {
+    if (storage.page_url != location.href && location.href.split('?')[0].split('www.facebook.com')[1] != '/photo.php' && location.href.search('/photos/') == 0) {
         storageSet('page_url', location.href);
         location.reload();
     } else {
