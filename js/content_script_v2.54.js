@@ -92,7 +92,7 @@ function animate(func, duration) {
 }
 
 //onscroll page function
-function onscroll() {
+function onscroll_func() {
     var scroll_value = window.pageYOffset;
     
     if (scroll_value >= 1000 && doc('up_button_block') != undefined) {
@@ -143,18 +143,15 @@ storageGet('page_url', function(storage) {
             doc('pagelet_sidebar').innerHTML += '<div id="up_button_block" style="position: fixed; width: 31px; height: 31px; bottom: 25px; left: 25px; background-color: #2aad6b; border-radius: 100%; display: none; opacity: 0; cursor: pointer;"><img src="'+up_button_src+'" width="31px" height="31px"/></div>';
             doc('up_button_block').onclick = function() {
                 var time = 500;
-                    minus = window.pageYOffset/time;
                     y = window.pageYOffset;
-
                 animate(function(timePassed) {
-                    console.log(timePassed);
-                    window.scroll(window.pageXOffset, y - minus*timePassed);
+                    window.scroll(window.pageXOffset, y - (y/time)*timePassed);
                 }, time);
             }
         }
 
         window.onscroll = function() {
-            onscroll();
+            onscroll_func();
         };
         //------------------------------- end --------------------------------
     }
