@@ -1,4 +1,4 @@
-# Extension for Facebook (beta version for developers is v2.51, current version is v2.48)
+# Extension for Facebook (v2.53)
 This extension allows you to remove some unnecessary panels (trash) in Facebook.
 
 ### Screenshot
