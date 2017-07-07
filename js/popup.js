@@ -38,7 +38,10 @@ function click() {
     location.reload();
 }
 
-document.getElementById('b1').onclick = function() {click();};
+doc('b1').onclick = function() {
+    click();
+};
+doc('version').innerHTML = 'v'+chrome.app.getDetails().version;
 
 //changing storage data while page is loading
 storageGet('enabled', function(storage) {
