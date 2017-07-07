@@ -140,7 +140,7 @@ storageGet('page_url', function(storage) {
         //-------------------------- up button beta --------------------------
         if (doc('up_button_block') == undefined)
         {
-            doc('pagelet_sidebar').innerHTML += '<div id="up_button_block" style="position: fixed; width: 31px; height: 31px; bottom: 25px; left: 25px; background-color: #2aad6b; border-radius: 100%; display: none; opacity: 0; cursor: pointer;"><img src="'+up_button_src+'" width="31px" height="31px"/></div>';
+            doc('pagelet_sidebar').innerHTML += '<div id="up_button_block" style="position: fixed; width: 31px; height: 31px; bottom: 25px; left: 25px; background-color: #3b5998; border-radius: 100%; display: none; opacity: 0; cursor: pointer;"><img src="'+up_button_src+'" width="31px" height="31px"/></div>';
             doc('up_button_block').onclick = function() {
                 var time = 500;
                     y = window.pageYOffset;
