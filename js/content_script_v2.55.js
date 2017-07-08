@@ -107,9 +107,10 @@ function onscroll_func() {
 color = {1: 'rgb(19, 207, 19)', 2: 'rgb(255, 195, 0)', 3: 'rgb(250, 60, 76)'};
 
 storageGet('color', function(storage) {
+    console.log(storage.color, doc('_2t-a _26aw _5rmj _50ti _2s1y', 0));
     if (storage.color == 1 || storage.color == 2 || storage.color == 3 && doc('_2t-a _26aw _5rmj _50ti _2s1y', 0) != undefined)
-    {
-        doc('_585-', 0).classList.add('lol');
+    {   
+        console.log('lol');
         doc('_2t-a _26aw _5rmj _50ti _2s1y', 0).style.backgroundColor = color[storage.color];
         doc('_2t-a _26aw _5rmj _50ti _2s1y', 0).style.borderBottom = color[storage.color];
         doc('_2n_9', 0).style.backgroundImage = 'url('+ chrome.extension.getURL('images/colors/color'+ storage.color +'.1.png') +')';
