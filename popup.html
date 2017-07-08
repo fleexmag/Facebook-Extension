@@ -3,13 +3,15 @@
         <!--styles-->
         <style type="text/css">
             .b1 {
-                height: 30px;
+                padding: 8px;
                 border: none;
                 font: 15px sans-serif;
                 color: white;
                 background-color: #32cd7e;
                 border-radius: 5px;
                 text-decoration: none;
+                outline: none;
+                cursor: pointer;
             }
             .b1:hover {
                 background-color: #2aad6b;
@@ -22,12 +24,37 @@
             }
             #main {
                 text-align: center;
-                height: 30px;
             }
             #version {
                 color: #b5b5b5;
                 font: 12px sans-serif;
                 margin-top: 4px;
+            }
+            .button {
+                width: 20px;
+                height: 20px;
+                background-color: gray;
+                border-radius: 100%;
+                float: left;
+                margin: 5px;
+                outline: none;
+                border: none;
+                text-decoration: none;
+                cursor: pointer;
+            }
+            #colors {
+                height: 30px;
+                width: 90px;
+                margin: 5px auto;
+            }
+            img {
+                width: 20px;
+                height: 20px;
+                display: none;
+                border-radius: 100%; 
+                position: relative; 
+                top: -1px; 
+                left: -6px;
             }
         </style>
     </head>
@@ -35,6 +62,17 @@
         <!--main block with button-->
         <section id="main">
             <button id="b1"></button>
+            <div id="colors">
+                <button id="color1" class="button" style="background-color: rgb(19, 207, 19)">
+                    <img src="images/selected.png" id="selected1">
+                </button>
+                <button id="color2" class="button" style="background-color: rgb(255, 195, 0);">
+                    <img src="images/selected.png" id="selected2">
+                </button>
+                <button id="color3" class="button" style="background-color: rgb(250, 60, 76);">
+                    <img src="images/selected.png" id="selected3">
+                </button>
+            </div>
             <div id="version"></div>
         </section>
     </body>

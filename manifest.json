@@ -4,7 +4,7 @@
 	"name": "__MSG_extensionName__",
 	"description": "__MSG_extensionDescription__",
 	"default_locale": "en",
-	"version": "2.54",
+	"version": "2.55",
     "developer": {
 	    "name": "Artem Trygub"
     },
@@ -22,6 +22,6 @@
 	"icons": {
 		"128": "images/icon128.png"
 	},
-	"web_accessible_resources": ["images/image.png", "images/up.png"],
+	"web_accessible_resources": ["images/image.png", "images/up.png", "images/colors/color1.1.png", "images/colors/color2.1.png", "images/colors/color3.1.png"],
 	"key": "jgkociapnioiplkngbnajjoikilfdjii"
 }

@@ -41,29 +41,21 @@ function addPhotoTest(value, num) {
     var res = null;
 
     storageGet('addPhoto', function(storage) {
-        if (storage.addPhoto == 1)
+        if (storage.addPhoto == 1 && doc(value, num) != undefined)
         {
             //add block with photo "I want to believe"
-            try {
-                doc(value, num).innerHTML = gen_block('<img src="'+image+'" width="284px" height="355px" title="'+chrome.i18n.getMessage('hide')+'"/>', 'cursor: pointer;');
-                doc('pagelet_i_want_to_believe_rhc').onclick = function() {
-                    addPhoto('0');
-                };
-                res = 'success';
-            } catch (e) {
-                console.log('error: ' + e.name);
-            }
-        } else {
+            doc(value, num).innerHTML = gen_block('<img src="'+image+'" width="284px" height="355px" title="'+chrome.i18n.getMessage('hide')+'"/>', 'cursor: pointer;');
+            doc('pagelet_i_want_to_believe_rhc').onclick = function() {
+                addPhoto('0');
+            };
+            res = 'success';
+        } else if (doc(value, num) != undefined) {
             //hide block with photo "I want to believe"
-            try {
-                doc(value, num).innerHTML = gen_block(chrome.i18n.getMessage('show'), 'height: 20px; width: 284px; background-color: #32cd7e; font: 22px sans-serif; color: white; text-align: center; line-height: 20px; cursor: pointer;');
-                doc('pagelet_i_want_to_believe_rhc').onclick = function() {
-                    addPhoto('1');
-                };
-                res = 'success';
-            } catch (e) {
-                console.log('error: ' + e.name);
-            }
+            doc(value, num).innerHTML = gen_block(chrome.i18n.getMessage('show'), 'height: 20px; width: 284px; background-color: #32cd7e; font: 22px sans-serif; color: white; text-align: center; line-height: 20px; cursor: pointer;');
+            doc('pagelet_i_want_to_believe_rhc').onclick = function() {
+                addPhoto('1');
+            };
+            res = 'success';
         }
 
         if (res == 'success') {
@@ -111,18 +103,41 @@ function onscroll_func() {
     }
 }
 
+//changing facebook color --------------- beta ---------------
+color = {1: 'rgb(19, 207, 19)', 2: 'rgb(255, 195, 0)', 3: 'rgb(250, 60, 76)'};
+
+storageGet('color', function(storage) {
+    if (storage.color == 1 || storage.color == 2 || storage.color == 3 && doc('_2t-a _26aw _5rmj _50ti _2s1y', 0) != undefined)
+    {
+        doc('_585-', 0).classList.add('lol');
+        doc('_2t-a _26aw _5rmj _50ti _2s1y', 0).style.backgroundColor = color[storage.color];
+        doc('_2t-a _26aw _5rmj _50ti _2s1y', 0).style.borderBottom = color[storage.color];
+        doc('_2n_9', 0).style.backgroundImage = 'url('+ chrome.extension.getURL('images/colors/color'+ storage.color +'.1.png') +')';
+        doc('_2n_9', 1).style.backgroundImage = 'url('+ chrome.extension.getURL('images/colors/color'+ storage.color +'.1.png') +')';
+        doc('_2n_9', 2).style.backgroundImage = 'url('+ chrome.extension.getURL('images/colors/color'+ storage.color +'.1.png') +')';
+        doc('_59fb _tmz', 0).style.backgroundImage = 'url('+ chrome.extension.getURL('images/colors/color'+ storage.color +'.1.png') +')';
+        doc('_5lxt', 0).style.backgroundImage = 'url('+ chrome.extension.getURL('images/colors/color'+ storage.color +'.1.png') +')';
+    } else {
+        doc('_2t-a _26aw _5rmj _50ti _2s1y', 0).style.backgroundColor = '#3b5998';
+        doc('_2t-a _26aw _5rmj _50ti _2s1y', 0).style.borderBottom = '#3b5998';
+    }
+});
+//--------------- beta ---------------
+
 storageGet('page_url', function(storage) {
     if (storage.page_url != location.href && location.href.split('?')[0].split('www.facebook.com')[1] != '/photo.php' && location.href.search('/photos/') == 0) {
         storageSet('page_url', location.href);
         location.reload();
     } else {
         //remove right col and chat etc.
-        try {
+        if (doc('facebook') != undefined && doc('globalContainer') != undefined)
+        {
             doc('facebook').classList.remove('sidebarMode');
             doc('globalContainer').style.paddingRight = '0px';
+        }
+
+        if (doc('fbDockChatBuddylistNub') != undefined) {
             doc('fbDockChatBuddylistNub').style.display = 'none';
-        } catch (e) {
-            console.log('error: ' + e.name);
         }
 
         //params of changes for pages: "profile" or another pages
@@ -133,14 +148,17 @@ storageGet('page_url', function(storage) {
             doc('globalContainer').style.width = '';
             if (doc('pagelet_ego_pane') != undefined) {
                 doc('pagelet_ego_pane').id = 'pagelet_ego_pane_with_photo';
+                doc('pagelet_ego_pane_with_photo').setAttribute('data-referrer', 'pagelet_ego_pane_with_photo');
             }
             addPhotoTest('pagelet_ego_pane_with_photo');
         }
 
-        //-------------------------- up button beta --------------------------
-        if (doc('up_button_block') == undefined)
+        //adding scroll up button
+        if (doc('up_button_block') == undefined && doc('pagelet_sidebar') != undefined)
         {
-            doc('pagelet_sidebar').innerHTML += '<div id="up_button_block" style="position: fixed; width: 31px; height: 31px; bottom: 25px; left: 25px; background-color: #3b5998; border-radius: 100%; display: none; opacity: 0; cursor: pointer;"><img src="'+up_button_src+'" width="31px" height="31px"/></div>';
+            doc('pagelet_sidebar').id = 'scroll_up_button';
+            doc('scroll_up_button').setAttribute('data-referrer', 'scroll_up_button');
+            doc('scroll_up_button').innerHTML += '<div id="up_button_block" style="position: fixed; width: 31px; height: 31px; bottom: 25px; left: 25px; background-color: '+ doc('_2t-a _26aw _5rmj _50ti _2s1y', 0).style.backgroundColor +'; border-radius: 100%; display: none; opacity: 0; cursor: pointer;"><img src="'+up_button_src+'" width="31px" height="31px"/></div>';
             doc('up_button_block').onclick = function() {
                 var time = 500;
                     y = window.pageYOffset;
@@ -153,6 +171,5 @@ storageGet('page_url', function(storage) {
         window.onscroll = function() {
             onscroll_func();
         };
-        //------------------------------- end --------------------------------
     }
 });
