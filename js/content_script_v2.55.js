@@ -107,10 +107,8 @@ function onscroll_func() {
 color = {1: 'rgb(19, 207, 19)', 2: 'rgb(255, 195, 0)', 3: 'rgb(250, 60, 76)'};
 
 storageGet('color', function(storage) {
-    console.log(storage.color, doc('_2t-a _26aw _5rmj _50ti _2s1y', 0));
     if (storage.color == 1 || storage.color == 2 || storage.color == 3 && doc('_2t-a _26aw _5rmj _50ti _2s1y', 0) != undefined)
     {   
-        console.log('lol');
         doc('_2t-a _26aw _5rmj _50ti _2s1y', 0).style.backgroundColor = color[storage.color];
         doc('_2t-a _26aw _5rmj _50ti _2s1y', 0).style.borderBottom = color[storage.color];
         doc('_2n_9', 0).style.backgroundImage = 'url('+ chrome.extension.getURL('images/colors/color'+ storage.color +'.1.png') +')';
@@ -129,6 +127,7 @@ storageGet('page_url', function(storage) {
     if (storage.page_url != location.href && location.href.split('?')[0].split('www.facebook.com')[1] != '/photo.php' && location.href.search('/photos/') == 0) {
         storageSet('page_url', location.href);
         location.reload();
+        console.log('reloading');
     } else {
         //remove right col and chat etc.
         if (doc('facebook') != undefined && doc('globalContainer') != undefined)
@@ -147,12 +146,15 @@ storageGet('page_url', function(storage) {
             doc('globalContainer').style.width = '851px';
         } else if (doc('globalContainer') != undefined) {
             doc('globalContainer').style.width = '';
-            if (doc('pagelet_ego_pane') != undefined) {
-                doc('pagelet_ego_pane').id = 'pagelet_ego_pane_with_photo';
-                doc('pagelet_ego_pane_with_photo').setAttribute('data-referrer', 'pagelet_ego_pane_with_photo');
-            }
-            addPhotoTest('pagelet_ego_pane_with_photo');
         }
+
+        //remove pagelet_ego_pane
+        if (doc('pagelet_ego_pane') != undefined) {
+            doc('pagelet_ego_pane').id = 'pagelet_ego_pane_with_photo';
+            doc('pagelet_ego_pane_with_photo').setAttribute('data-referrer', 'pagelet_ego_pane_with_photo');
+        }
+            
+        addPhotoTest('pagelet_ego_pane_with_photo');
 
         //adding scroll up button
         if (doc('up_button_block') == undefined && doc('pagelet_sidebar') != undefined)
