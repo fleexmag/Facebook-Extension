@@ -36,10 +36,9 @@ function doc(name, num) {
 //function for generate block with content for right col
 function genBlock(content, styles) {
     var classesNames = ['pagelet-group pagelet', '_1-ia', '_4-u2 _1-ib _2tyk _20os _4-u8'];
-    var displayGroup = 'rhc';
-    var id = 'pagelet_i_want_to_believe_' + displayGroup;
+    var id = 'pagelet_i_want_to_believe_rhc';
     
-    var res = '<div class="'+classesNames[0]+'" id="'+id+'" data-referrer="'+id+'" data-display-group="'+displayGroup+'"><div class="'+classesNames[1]+'"><div class="'+classesNames[2]+'" style="'+styles+'">'+content+'</div></div></div>';
+    var res = '<div class="'+classesNames[0]+'" id="'+id+'"><div class="'+classesNames[1]+'"><div class="'+classesNames[2]+'" style="'+styles+'">'+content+'</div></div></div>';
 
     return res;
 }
@@ -60,7 +59,7 @@ function addBlockToRHC(name, num) {
                 var height = '355px';
                 var styles = 'cursor: pointer;';
 
-                doc(name, num).innerHTML = genBlock('<img src="'+imageSrc+'" title="'+getMessage('hide')+'" width="'+width+'" height="'+height+'"/>', styles) + doc(name, num).innerHTML;
+                doc(name, num).innerHTML = genBlock('<img src="'+imageSrc+'" title="'+getMessage('hide')+'" width="'+width+'" height="'+height+'"/>', styles);
                 doc('pagelet_i_want_to_believe_rhc').onclick = function() {
                     storageSet({'addPhoto': '0'});
                     location.reload();
@@ -69,7 +68,7 @@ function addBlockToRHC(name, num) {
                 //add block with button 'Show'
                 var styles = 'height: 20px; width: 284px; background-color: '+doc('_2t-a _26aw _5rmj _50ti _2s1y', 0).style.backgroundColor+'; font: 22px sans-serif; color: white; text-align: center; line-height: 20px; cursor: pointer;';
 
-                doc(name, num).innerHTML = genBlock(getMessage('show'), styles) + doc(name, num).innerHTML;
+                doc(name, num).innerHTML = genBlock(getMessage('show'), styles);
                 doc('pagelet_i_want_to_believe_rhc').onclick = function() {
                     storageSet({'addPhoto': '1'});
                     location.reload();
@@ -171,13 +170,9 @@ storageGet('page_url', function(storage) {
     }
 
     //remove pagelet_ego_pane
-    if (doc('pagelet_ego_pane') != undefined) {
-        [].forEach.call(doc('pagelet_ego_pane').getElementsByTagName('*'), function(value, num) {
-            doc('pagelet_ego_pane').getElementsByTagName('*')[num].style.display = 'none';
-        });
-        
+    if (doc('pagelet_ego_pane') != undefined) {    
         doc('pagelet_ego_pane').id = 'pagelet_ego_pane_with_photo';
-        doc('pagelet_ego_pane_with_photo').setAttribute('data-referrer', 'pagelet_ego_pane_with_photo');
+        doc('pagelet_ego_pane_with_photo').removeAttribute('data-referrer');
 
         addBlockToRHC('pagelet_ego_pane_with_photo');
     }
