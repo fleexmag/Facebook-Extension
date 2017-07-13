@@ -171,13 +171,13 @@ storageGet('page_url', function(storage) {
         }
 
         if (doc('fbDockChatBuddylistNub') != undefined) {
-            doc('fbDockChatBuddylistNub').style.display = 'none';
+            doc('fbDockChatBuddylistNub').style.visability = 'hidden';
         }
 
         //remove pagelet_ego_pane
         if (doc('pagelet_ego_pane') != undefined) {
             [].forEach.call(doc('pagelet_ego_pane').getElementsByTagName('*'), function(value, num) {
-                doc('pagelet_ego_pane').getElementsByTagName('*')[num].style.display = 'none';
+                doc('pagelet_ego_pane').getElementsByTagName('*')[num].style.visability = 'hidden';
             });
             
             doc('pagelet_ego_pane').id = 'pagelet_ego_pane_with_photo';
