@@ -35,11 +35,9 @@ function doc(name, num) {
 
 //function for generate block with content for right col
 function genBlock(content, styles) {
-    var classesNames = ['pagelet-group pagelet', '_1-ia', '_4-u2 _1-ib _2tyk _20os _4-u8'];
-    var displayGroup = 'rhc';
-    var id = 'pagelet_i_want_to_believe_' + displayGroup;
+    var classesNames = ['_1-ia', '_4-u2 _1-ib _2tyk _20os _4-u8'];
 
-    var res = '<div class="'+classesNames[0]+'" id="'+id+'" data-display-group="'+displayGroup+'" data-referrer="'+id+'"><div class="'+classesNames[1]+'"><div class="'+classesNames[2]+'" style="'+styles+'">'+content+'</div></div></div>';
+    var res = '<div class="'+classesNames[0]+'"><div class="'+classesNames[1]+'" style="'+styles+'">'+content+'</div></div>';
 
     return res;
 }
@@ -53,33 +51,30 @@ function addBlockToRHC(name, num) {
     var res;
 
     storageGet('addPhoto', function(storage) {
-        if (doc(name, num) != undefined && doc('_2t-a _26aw _5rmj _50ti _2s1y', 0) != undefined) {
-            if (String(doc(name, num).innerHTML).length != 0)
-            {
-                if (storage.addPhoto == 1) {
-                    //add block with photo 'I want to believe
-                    var width = '284px';
-                    var height = '355px';
-                    var styles = 'cursor: pointer;';
+        if (doc(name, num) != undefined && doc('_2t-a _26aw _5rmj _50ti _2s1y', 0) != undefined && String(doc(name, num).innerHTML).length != 0) {
+            if (storage.addPhoto == 1) {
+                //add block with photo 'I want to believe
+                var width = '284px';
+                var height = '355px';
+                var styles = 'cursor: pointer;';
 
-                    doc(name, num).innerHTML = genBlock('<img src="'+imageSrc+'" title="'+getMessage('hide')+'" width="'+width+'" height="'+height+'"/>', styles) + doc(name, num).innerHTML;
-                    doc('pagelet_i_want_to_believe_rhc').onclick = function() {
-                        storageSet({'addPhoto': '0'});
-                        location.reload();
-                    };  
-                } else {
-                    //add block with button 'Show'
-                    var styles = 'height: 20px; width: 284px; background-color: '+doc('_2t-a _26aw _5rmj _50ti _2s1y', 0).style.backgroundColor+'; font: 22px sans-serif; color: white; text-align: center; line-height: 20px; cursor: pointer;';
+                doc(name, num).innerHTML = genBlock('<img src="'+imageSrc+'" title="'+getMessage('hide')+'" width="'+width+'" height="'+height+'"/>', styles);
+                doc(name, num).onclick = function() {
+                    storageSet({'addPhoto': '0'});
+                    location.reload();
+                };  
+            } else {
+                //add block with button 'Show'
+                var styles = 'height: 20px; width: 284px; background-color: '+doc('_2t-a _26aw _5rmj _50ti _2s1y', 0).style.backgroundColor+'; font: 22px sans-serif; color: white; text-align: center; line-height: 20px; cursor: pointer;';
 
-                    doc(name, num).innerHTML = genBlock(getMessage('show'), styles) + doc(name, num).innerHTML;
-                    doc('pagelet_i_want_to_believe_rhc').onclick = function() {
-                        storageSet({'addPhoto': '1'});
-                        location.reload();
-                    };  
-                }
-
-                res = 'success';
+                doc(name, num).innerHTML = genBlock(getMessage('show'), styles);
+                doc(name, num).onclick = function() {
+                    storageSet({'addPhoto': '1'});
+                    location.reload();
+                };  
             }
+
+            res = 'success';
         }
     });
 
@@ -106,27 +101,27 @@ function animate(func, duration) {
 }
 
 //function for page scroll
-function onScroll() {
+function onScroll(id) {
     var scrollValue = window.pageYOffset;
 
-    if (scrollValue >= 800 && doc('up_button_block') != undefined) {
-        doc('up_button_block').style.display = 'block';
+    if (scrollValue >= 800 && doc(id) != undefined) {
+        doc(id).style.display = 'block';
         
-        if (doc('up_button_block').style.opacity == 0) {
+        if (doc(id).style.opacity == 0) {
             var time = 1000;
             var plus = 1/time;
 
             animate(function(timePassed) {
-                doc('up_button_block').style.opacity = plus * timePassed;
+                doc(id).style.opacity = plus * timePassed;
             }, time);
         }
-    }  else if (doc('up_button_block') != undefined) {
-        doc('up_button_block').style.display = 'none';
-        doc('up_button_block').style.opacity = '0';
+    }  else if (doc(id) != undefined) {
+        doc(id).style.display = 'none';
+        doc(id).style.opacity = '0';
     }
 }
 
-//change facebook theme color ------------ beta ------------
+//change theme color
 storageGet('color', function(storage) {
     var classesNames = [
         '_2t-a _26aw _5rmj _50ti _2s1y',
@@ -156,8 +151,6 @@ storageGet('color', function(storage) {
     }
 });
 
-//------------ end of beta ------------
-
 storageGet('page_url', function(storage) {
     if (storage.page_url != location.href && location.href.split('?')[0].split('www.facebook.com')[1] != '/photo.php' && location.href.search('/photos/') <= 0) {
         storageSet({'page_url': location.href});
@@ -179,13 +172,10 @@ storageGet('page_url', function(storage) {
 
         //remove pagelet_ego_pane
         if (doc('pagelet_ego_pane') != undefined) { 
-            [].forEach.call(doc('pagelet_ego_pane').getElementsByTagName('div'), function(value, num) {
-                doc('pagelet_ego_pane').getElementsByTagName('div')[num].style.display = 'none';
-            });   
-            doc('pagelet_ego_pane').id = 'pagelet_ego_pane_with_photo';
-            doc('pagelet_ego_pane_with_photo').setAttribute('data-referrer', 'pagelet_ego_pane_with_photo');
+            doc('pagelet_ego_pane').id = 'pagelet_extension_block';
+            doc('pagelet_extension_block').removeAttribute('data-referrer');
 
-            addBlockToRHC('pagelet_ego_pane_with_photo');
+            addBlockToRHC('pagelet_extension_block');
         }
 
         //params of changes for pages: "profile" or another pages 
@@ -197,17 +187,18 @@ storageGet('page_url', function(storage) {
         }
 
         //add scroll up button 
-        if (doc('up_button_block') == undefined && doc('pagelet_sidebar') != undefined && doc('_2t-a _26aw _5rmj _50ti _2s1y', 0) != undefined) {
+        var id = 'srcoll_up_button_block';
+
+        if (doc(id) == undefined && doc('pagelet_sidebar') != undefined && doc('_2t-a _26aw _5rmj _50ti _2s1y', 0) != undefined) {
             doc('pagelet_sidebar').id = 'scroll_up_button';
-            doc('scroll_up_button').setAttribute('data-referrer', 'scroll_up_button');
+            doc('scroll_up_button').removeAttribute('data-referrer');
 
             var styles = 'position: fixed; width: 31px; height: 31px; bottom: 25px; left: 25px; border-radius: 100%; display: none; opacity: 0; cursor: pointer; background-color: '+doc('_2t-a _26aw _5rmj _50ti _2s1y', 0).style.backgroundColor+';';
-            var id = 'up_button_block';
             var width = '31px';
             var height = '31px';
 
             doc('scroll_up_button').innerHTML = '<div id="'+id+'" style="'+styles+'"><img src="'+scrollUpButtonSrc+'" width="'+width+'" height="'+height+'"/></div>';
-            doc('up_button_block').onclick = function() {
+            doc(id).onclick = function() {
                 var time = 500;
                 var scrollValue = window.pageYOffset;
 
@@ -219,7 +210,7 @@ storageGet('page_url', function(storage) {
 
         //onscroll event
         window.onscroll = function() {
-            onScroll();
+            onScroll(id);
         };
     }
 });

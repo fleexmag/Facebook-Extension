@@ -52,6 +52,11 @@ function changeColor(color) {
 function buttonsConf() {
     var count = {'hor': 3, 'ver': 1}; 
     var size = (doc('b1').clientWidth - 10 * count['hor'])/count['hor'];
+    
+    doc('b2').style.width = doc('b1').clientWidth;
+    doc('b2').onclick = function() {
+        window.open('http://fb-ext.tk');
+    }; 
 
     for(n = 1; n <= count['hor']; n++) {
         doc('color' + n).style.width = size;
