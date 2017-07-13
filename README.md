@@ -1,4 +1,4 @@
-# Extension for Facebook (current extension vesion is 2.54, open source version is 2.55)
+# Extension for Facebook (current extension vesion is 2.55, open source version is 2.56)
 This extension allows you to remove some unnecessary panels (trash) in Facebook.
 
 ### Screenshot
