@@ -4,7 +4,7 @@
 	"name": "__MSG_extensionName__",
 	"description": "__MSG_extensionDescription__",
 	"default_locale": "en",
-	"version": "2.55",
+	"version": "2.56",
     "developer": {
 	    "name": "Artem Trygub"
     },
@@ -15,12 +15,12 @@
 		"tabs", "webNavigation", "*://*.facebook.com/*", "storage"
     ],
 	"browser_action": {
-		"default_icon": "images/icon128.png",
+		"default_icon": "images/icon128_enabled.png",
 		"default_title": "__MSG_extensionName__",
 		"default_popup": "popup.html"
 	},
 	"icons": {
-		"128": "images/icon128.png"
+		"128": "images/icon128_enabled.png"
 	},
 	"web_accessible_resources": ["images/image.png", "images/up.png", "images/colors/color1.1.png", "images/colors/color2.1.png", "images/colors/color3.1.png"],
 	"key": "jgkociapnioiplkngbnajjoikilfdjii"

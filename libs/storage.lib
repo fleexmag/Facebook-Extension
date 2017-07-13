@@ -1,11 +1,19 @@
-//native function for getting storage data
-function storageGet(cname, callback) {
-    chrome.storage.local.get(cname, callback);
+//function for get storage data
+function storageGet(name, callback)  {
+    chrome.storage.local.get(name, callback);
 }
 
-//native function for setting storage data
-function storageSet(cname, cvalue) {
-    obj = {};
-    obj[cname] = cvalue; 
-    chrome.storage.local.set(obj);
+//function for set storage data 
+function storageSet(data) {
+    chrome.storage.local.set(data);
+}   
+
+//function for get url to extension source
+function getURL(source) {
+    return chrome.extension.getURL(source);
+}
+
+//function for get message 
+function getMessage(name) {
+    return chrome.i18n.getMessage(name);
 }
