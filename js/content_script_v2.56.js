@@ -156,68 +156,68 @@ storageGet('color', function(storage) {
 //------------ end of beta ------------
 
 storageGet('page_url', function(storage) {
+    //remove right col and chat etc.
+    if (doc('facebook') != undefined && doc('globalContainer') != undefined) {
+        if (doc('facebook').classList.contains('sidebarMode') != 0)
+        {
+            doc('facebook').classList.remove('sidebarMode');
+        }
+        
+        doc('globalContainer').style.paddingRight = '0px';
+    }
+
+    if (doc('fbDockChatBuddylistNub') != undefined) {
+        doc('fbDockChatBuddylistNub').style.display = 'none';
+    }
+
+    //remove pagelet_ego_pane
+    if (doc('pagelet_ego_pane') != undefined) {
+        [].forEach.call(doc('pagelet_ego_pane').getElementsByTagName('*'), function(value, num) {
+            doc('pagelet_ego_pane').getElementsByTagName('*')[num].style.display = 'none';
+        });
+        
+        doc('pagelet_ego_pane').id = 'pagelet_ego_pane_with_photo';
+        doc('pagelet_ego_pane_with_photo').setAttribute('data-referrer', 'pagelet_ego_pane_with_photo');
+
+        addBlockToRHC('pagelet_ego_pane_with_photo');
+    }
+
+    //params of changes for pages: "profile" or another pages 
+    if (doc('fbProfileCover') != undefined && doc('globalContainer') != undefined) {
+        //new window size for profile page
+        doc('globalContainer').style.width = '851px';
+    } else if (doc('globalContainer') != undefined) {
+        doc('globalContainer').style.width = '';
+    }
+
+    //add scroll up button 
+    if (doc('up_button_block') == undefined && doc('pagelet_sidebar') != undefined && doc('_2t-a _26aw _5rmj _50ti _2s1y', 0) != undefined) {
+        doc('pagelet_sidebar').id = 'scroll_up_button';
+        doc('scroll_up_button').setAttribute('data-referrer', 'scroll_up_button');
+
+        var styles = 'position: fixed; width: 31px; height: 31px; bottom: 25px; left: 25px; border-radius: 100%; display: none; opacity: 0; cursor: pointer; background-color: '+doc('_2t-a _26aw _5rmj _50ti _2s1y', 0).style.backgroundColor+';';
+        var id = 'up_button_block';
+        var width = '31px';
+        var height = '31px';
+
+        doc('scroll_up_button').innerHTML = '<div id="'+id+'" style="'+styles+'"><img src="'+scrollUpButtonSrc+'" width="'+width+'" height="'+height+'"/></div>';
+        doc('up_button_block').onclick = function() {
+            var time = 500;
+            var scrollValue = window.pageYOffset;
+
+            animate(function(timePassed) {
+                window.scroll(window.pageXOffset, scrollValue - (scrollValue/time) * timePassed);
+            }, time);
+        };
+    }
+
+    //onscroll event
+    window.onscroll = function() {
+        onScroll();
+    };
+    
     if (storage.page_url != location.href && location.href.split('?')[0].split('www.facebook.com')[1] != '/photo.php' && location.href.search('/photos/') == 0) {
         storageSet({'page_url': location.href});
         location.reload();
-    } else {
-        //remove right col and chat etc.
-        if (doc('facebook') != undefined && doc('globalContainer') != undefined) {
-            if (doc('facebook').classList.contains('sidebarMode') != 0)
-            {
-                doc('facebook').classList.remove('sidebarMode');
-            }
-
-            doc('globalContainer').style.paddingRight = '0px';
-        }
-
-        if (doc('fbDockChatBuddylistNub') != undefined) {
-            doc('fbDockChatBuddylistNub').style.visability = 'hidden';
-        }
-
-        //remove pagelet_ego_pane
-        if (doc('pagelet_ego_pane') != undefined) {
-            [].forEach.call(doc('pagelet_ego_pane').getElementsByTagName('*'), function(value, num) {
-                doc('pagelet_ego_pane').getElementsByTagName('*')[num].style.visability = 'hidden';
-            });
-            
-            doc('pagelet_ego_pane').id = 'pagelet_ego_pane_with_photo';
-            doc('pagelet_ego_pane_with_photo').setAttribute('data-referrer', 'pagelet_ego_pane_with_photo');
-
-            addBlockToRHC('pagelet_ego_pane_with_photo');
-        }
-
-        //params of changes for pages: "profile" or another pages 
-        if (doc('fbProfileCover') != undefined && doc('globalContainer') != undefined) {
-            //new window size for profile page
-            doc('globalContainer').style.width = '851px';
-        } else if (doc('globalContainer') != undefined) {
-            doc('globalContainer').style.width = '';
-        }
-
-        //add scroll up button 
-        if (doc('up_button_block') == undefined && doc('pagelet_sidebar') != undefined && doc('_2t-a _26aw _5rmj _50ti _2s1y', 0) != undefined) {
-            doc('pagelet_sidebar').id = 'scroll_up_button';
-            doc('scroll_up_button').setAttribute('data-referrer', 'scroll_up_button');
-
-            var styles = 'position: fixed; width: 31px; height: 31px; bottom: 25px; left: 25px; border-radius: 100%; display: none; opacity: 0; cursor: pointer; background-color: '+doc('_2t-a _26aw _5rmj _50ti _2s1y', 0).style.backgroundColor+';';
-            var id = 'up_button_block';
-            var width = '31px';
-            var height = '31px';
-
-            doc('scroll_up_button').innerHTML = '<div id="'+id+'" style="'+styles+'"><img src="'+scrollUpButtonSrc+'" width="'+width+'" height="'+height+'"/></div>';
-            doc('up_button_block').onclick = function() {
-                var time = 500;
-                var scrollValue = window.pageYOffset;
-
-                animate(function(timePassed) {
-                    window.scroll(window.pageXOffset, scrollValue - (scrollValue/time) * timePassed);
-                }, time);
-            };
-        }
-
-        //onscroll event
-        window.onscroll = function() {
-            onScroll();
-        };
     }
 });
