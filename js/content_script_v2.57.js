@@ -206,7 +206,7 @@ storageGet('page_url', function(storage) {
                     window.scroll(window.pageXOffset, scrollValue - (scrollValue/time) * timePassed);
                 }, time);
             };
-        }
+        } 
 
         //onscroll event
         window.onscroll = function() {
