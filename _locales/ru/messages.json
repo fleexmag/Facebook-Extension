@@ -10,11 +10,5 @@
 	},
 	"button_d": {
 		"message": "Выключено"
-	},
-	"hide": {
-		"message": "Скрыть"
-	},
-	"show": {
-		"message": "Показать"
 	}
 }

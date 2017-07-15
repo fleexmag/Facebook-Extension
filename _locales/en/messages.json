@@ -10,11 +10,5 @@
 	},
 	"button_d": {
 		"message": "Disabled"
-	},
-	"hide": {
-		"message": "Hide"
-	},
-	"show": {
-		"message": "Show"
 	}
 }
