@@ -162,45 +162,46 @@ function addScrollUpButton() {
     };
 }
 
-//change theme color
-storageGet('color', function(storage) {
-    var classesNames = [
-        '_2t-a _26aw _5rmj _50ti _2s1y',
-        '_2n_9',
-        '_59fb _tmz',
-        '_5lxt'
-    ];
+//function for change theme color
+function changeThemeColor() {
+    storageGet('color', function(storage) {
+        var classesNames = [
+            '_2t-a _26aw _5rmj _50ti _2s1y',
+            '_2n_9',
+            '_59fb _tmz',
+            '_5lxt'
+        ];
 
-    var colors = {
-        '1': 'rgb(19, 207, 19)',
-        '2': 'rgb(255, 195, 0)',
-        '3': 'rgb(250, 60, 76)',
-        'standart': '#3b5998'
-    }
+        var colors = {
+            '1': 'rgb(19, 207, 19)',
+            '2': 'rgb(255, 195, 0)',
+            '3': 'rgb(250, 60, 76)',
+            'standart': '#3b5998'
+        }
 
-    if (storage.color != 'standart' && storage.color != undefined && doc(classesNames[0], 0) != undefined) {
-        doc(classesNames[0], 0).style.backgroundColor = colors[storage.color];
-        doc(classesNames[0], 0).style.borderBottom = colors[storage.color];
-        doc(classesNames[1], 0).style.backgroundImage = 'url('+getURL('images/colors/color' + storage.color +'.1.png')+')';
-        doc(classesNames[1], 1).style.backgroundImage = 'url('+getURL('images/colors/color' + storage.color +'.1.png')+')';
-        doc(classesNames[1], 2).style.backgroundImage = 'url('+getURL('images/colors/color' + storage.color +'.1.png')+')';
-        doc(classesNames[2], 0).style.backgroundImage = 'url('+getURL('images/colors/color' + storage.color +'.1.png')+')';
-        doc(classesNames[3], 0).style.backgroundImage = 'url('+getURL('images/colors/color' + storage.color +'.1.png')+')';
-    } else if (doc(classesNames[0], 0) != undefined) {
-        doc(classesNames[0], 0).style.backgroundColor = colors['standart'];
-        doc(classesNames[0], 0).style.borderBottom = colors['standart'];
-    }
-});
-
-
+        if (storage.color != 'standart' && storage.color != undefined && doc(classesNames[0], 0) != undefined) {
+            doc(classesNames[0], 0).style.backgroundColor = colors[storage.color];
+            doc(classesNames[0], 0).style.borderBottom = colors[storage.color];
+            doc(classesNames[1], 0).style.backgroundImage = 'url('+getURL('images/colors/color' + storage.color +'.1.png')+')';
+            doc(classesNames[1], 1).style.backgroundImage = 'url('+getURL('images/colors/color' + storage.color +'.1.png')+')';
+            doc(classesNames[1], 2).style.backgroundImage = 'url('+getURL('images/colors/color' + storage.color +'.1.png')+')';
+            doc(classesNames[2], 0).style.backgroundImage = 'url('+getURL('images/colors/color' + storage.color +'.1.png')+')';
+            doc(classesNames[3], 0).style.backgroundImage = 'url('+getURL('images/colors/color' + storage.color +'.1.png')+')';
+        } else if (doc(classesNames[0], 0) != undefined) {
+            doc(classesNames[0], 0).style.backgroundColor = colors['standart'];
+            doc(classesNames[0], 0).style.borderBottom = colors['standart'];
+        }
+    });
+}
 
 storageGet('page_url', function(storage) {
-    if (storage.page_url != location.href && location.href.split('?')[0].split('www.facebook.com')[1] != '/photo.php' && location.href.search('/photos/') <= 0 && location.href.search('/videos/') <= 0) {
+    if (storage.page_url != location.href && location.href.split('?')[0].split('www.facebook.com')[1] != '/photo.php' && location.href.search('/photos/') <= 0 && location.href.search('/videos/') <= 0 && location.href.search('/messages/') <= 0) {
         storageSet({'page_url': location.href});
         location.reload();
     } else {
         removeTrash();
         removeFooterBlockPadding();
+        changeThemeColor();
         addScrollUpButton();
 
         //params of changes for pages: "profile" or another pages 
